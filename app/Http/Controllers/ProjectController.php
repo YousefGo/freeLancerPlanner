@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Client;
+use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 class ProjectController extends Controller
@@ -42,7 +43,17 @@ class ProjectController extends Controller
         $project= Project::where('userId',$user_id)->where('id',$id)->first();
         return view('user.project.edit',compact('clients','user_id','project'));
     }
+   
 
+    public function projectTask($id){
+        $user_id = Auth::user()->id;
+         $project= Project::where('userId',$user_id)->where('id',$id)->first();
+        $tasks = $project->tasks;
+        return view('user.task.tasks',compact('project','user_id','project','tasks'));
+
+
+
+    }
     /**
      * Show the form for creating a new resource.
      *

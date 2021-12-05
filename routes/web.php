@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/storeProject',[ProjectController::class,'storeProject'])->name('store.project');
   Route::get('/deleteProject/{id}',[ProjectController::class,'deleteProject'])->name('delete.project');
   Route::get('/updateProject/{id}',[ProjectController::class,'updateProject'])->name('update.project');
+  Route::get('/projectTask/{id}',[ProjectController::class,'projectTask'])->name('projectTask');
   Route::post('/updatePost',[ProjectController::class,'updateProject'])->name('updatepost.project');
 
 

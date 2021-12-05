@@ -1,13 +1,13 @@
 @extends('layouts.layout')
 @section('title')
-  Projects
+  Tasks
 @endsection
 @section('content')
    
   <div class="row">
     <div class="card col-md-8">
       <div class="card-header">
-        <h3 class="card-title"> Project List</h3>
+        <h3 class="card-title"> Task List</h3>
   
         <div class="card-tools">
           <div class="input-group input-group-sm" style="width: 150px;">
@@ -26,22 +26,29 @@
         <table class="table table-head-fixed text-nowrap text-center">
           <thead>
             <tr>
-              <th>project Name</th>
-              <th>Client Name</th>
+              <th>task Name</th>
+              <th>Description Name</th>
               <th>start Date</th>
-              <th style="width:40%"> Action </th>
+              <th>end Date</th>
+              <th>Hours</th>
+              <th>Price</th>
+              <th > Action </th>
             </tr>
           </thead>
           <tbody>
            
-            @foreach ($projects as $project)
+            @foreach ($tasks as $task)
             <tr>  
-                <td>{{$project->name}}</td>
-                <td>{{$project->client['name']}} </td>
-                <td> {{ date('d-m-Y', strtotime($project->created_at))}}</td>
-                 <td>      <a href="{{route('update.project',$project->id)}}" class="btn btn-info"> UPDATE </a>
-                     <a href="{{route('projectTask',$project->id)}}" class="btn btn-warning"> Detail </a>
-                           <a href="{{route('delete.project',$project->id)}}" class="btn btn-danger"> DELETE </a>
+                <td>{{$task['name']}}</td>
+                <td>{{$task['description']}} </td>
+                <td> {{ date('d-m-Y', strtotime($task->created_at))}}</td>
+                <td> {{ date('d-m-Y', strtotime($task->created_at))}}</td>
+                <td>{{$task['totalPriceOfTask']}} </td>
+                <td>{{$task['totolHoursOfTask']}} </td>
+
+
+                 <td>      <a href="{{route('update.project',$project->id)}}" class="btn btn-info"> Change State </a>
+                          
                 </td>  
             </tr>    
             @endforeach
@@ -61,9 +68,9 @@
     
   
   
-     <div class="card col-md-4">
+     <div class="card col-md-3">
          <div class="card-header">
-      <h3 class="card-title"> <span class="border border-info">  ADD NEW Project </span></h3>
+      <h3 class="card-title"> <span class="border border-info">  ADD NEW Task </span></h3>
          </div>
     <!-- /.card-header -->
     <!-- form start -->
@@ -76,16 +83,7 @@
             <label for="exampleInputEmail1">Name:</label>
             <input type="text" class="form-control w-100" name="name" id="exampleInputEmail1" placeholder="Enter Name">
           </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Client:</label>
-            <select class="custom-select rounded-0" id="exampleSelectRounded0" name='clientId'>
-              <option hidden selected > select the clients</option>
-              @foreach ($clients as $client)
-              <option value="{{$client->id}}" >{{$client->name}}</option>
-              @endforeach
-  
-            </select>
-          </div>
+       
           <div class="form-group ">
             <label for="exampleInputEmail1"class="w-100" >Description:</label>
             <br>

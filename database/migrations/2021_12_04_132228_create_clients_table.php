@@ -21,8 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('by')->nullable();
             $table->string('submissonMethod')->nullable();  
             $table->text('notes')->nullable();  
-            $table->string('userId');
-            $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');      
+            $table->foreignId('userId')->constrained('user');       
             $table->timestamps();
         });
     }

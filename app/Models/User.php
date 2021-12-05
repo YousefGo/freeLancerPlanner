@@ -44,11 +44,11 @@ class User extends Authenticatable
     ];
 
     public function clients(){
-        $this->hasMany(Client::class,'userId');
+        return  $this->hasOne(Client::class,"userId");
     }
     
     public function projects(){
-        $this->hasMany(Project::class,'clientId');
+        return   $this->hasMany(Project::class,'userId');
     }
 
 

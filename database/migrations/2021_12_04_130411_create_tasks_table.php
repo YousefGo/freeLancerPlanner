@@ -23,7 +23,7 @@ class CreateTasksTable extends Migration
             $table->timestamp('endDate')->nullable();
             $table->enum('state',['backlog','started','pending','finshed']);
             $table->enum('priority',['1','2','3','4','5']);
-            $table->string('projectId');
+            $table->unsignedBigInteger('projectId');
             $table->foreign('projectId')->references('id')->on('projects')->onDelete('cascade');    
             $table->timestamps();
         });

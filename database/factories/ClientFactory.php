@@ -21,7 +21,7 @@ class ClientFactory extends Factory
              'by'=>'facebook',
              'submissonMethod'=>'dropbox',
              'notes'=>'juest test',
-             'userId'=>'1'
+             'userId'=>1
         ];
     }
 }

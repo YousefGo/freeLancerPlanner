@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
-
+use App\Models\Client;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 class ProjectController extends Controller
 {
     /**
@@ -16,6 +18,29 @@ class ProjectController extends Controller
     public function index()
     {
         //
+         $user_id = Auth::user()->id;
+        $clients = Client::where('userId',$user_id)->get();
+        $projects= Project::where('userId',$user_id)->get();
+        return view('user.project.projects',compact('clients','user_id','projects'));
+    }
+    public function storeProject (Request $req){
+        Project::create($req->except('_token'));
+        return redirect()->back();
+    }
+
+       public function deleteProject($id){
+           $user_id = Auth::user()->id;
+           Project::where('id',$id)->where('userId',$user_id)->delete();
+           return redirect()->back();
+      
+    }
+
+    public function updateProject($id)
+    {
+        $user_id = Auth::user()->id;
+        $clients = Client::where('userId',$user_id)->get();
+        $project= Project::where('userId',$user_id)->where('id',$id)->first();
+        return view('user.project.edit',compact('clients','user_id','project'));
     }
 
     /**

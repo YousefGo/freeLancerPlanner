@@ -23,7 +23,7 @@ class CreateSubTasksTable extends Migration
             $table->timestamp('endDate')->nullable();
             $table->enum('state',['backlog','started','pending','finshed']);
             $table->enum('priority',['1','2','3','4','5']);
-            $table->string('taskId');
+            $table->unsignedBigInteger('taskId');
             $table->foreign('taskId')->references('id')->on('tasks')->onDelete('cascade');    
             $table->timestamps();
 

@@ -14,11 +14,11 @@ class Client extends Model
     protected $fillable=['name', 'email', 'phone', 'by', 'submissonMethod', 'notes', 'userId'];
     // get clients of user 
     public function user(){
-        $this->belongsTo(User::class,'userId');
+     return $this->belongsTo(User::class,'userId');
     }
 
     public function projects(){
-        $this->hasMany(Project::class,'clientId');
+        return  $this->hasMany(Project::class,'clientId');
     }
 
 

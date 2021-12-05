@@ -22,9 +22,9 @@ class CreateProjectsTable extends Migration
             $table->timestamp('startDate')->nullable();
             $table->timestamp('endDate')->nullable();
             $table->enum('state',['backlog','started','pending','finshed']);
-            $table->string('clientId');
+            $table->unsignedBigInteger('clientId');
             $table->foreign('clientId')->references('id')->on('clients')->onDelete('cascade');
-            $table->string('userId');
+            $table->unsignedBigInteger('userId');
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
